@@ -1,0 +1,4 @@
+fantastic
+=========
+
+go server
