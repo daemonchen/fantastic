@@ -1,0 +1,1 @@
+WARN  2013/11/15 17:53:56 static.go:61: File not found (src/fantastic/public/js/jquery.min.map): stat src/fantastic/public/js/jquery.min.map: no such file or directory 
