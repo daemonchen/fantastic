@@ -36,10 +36,13 @@
           <i class="github icon"></i> Github
         </a>
         <a class="{{if eq .controllerName "segment"}}active{{end}} item" href="/segment/index">
-          <i class="tasks icon"></i> Segment
+          <i class="terminal icon"></i> Segment
         </a>
-        <a class="{{if eq .controllerName "segment"}}active{{end}} item" href="http://115.29.47.52:28778/">
+        <a class="item" href="http://115.29.47.52:28778/">
           <i class="wrench icon"></i> Monitor
+        </a>
+        <a class="{{if eq .controllerName "todo"}}active{{end}} item" href="/todo/index">
+          <i class="tasks icon"></i> ToDo
         </a>
         <div class="item right menu">
           <img src="https://drone.io/github.com/daemonchen/fantastic/status.png" />
