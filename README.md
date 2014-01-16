@@ -1,4 +1,0 @@
-fantastic
-=========
-
-go server

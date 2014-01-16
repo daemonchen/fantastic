@@ -1,26 +1,18 @@
+{{set . "controllerName" .controllerName}}
+{{append . "moreStyles" "/css/main.css"}}
 {{set . "title" "Home"}}
+{{append . "moreScripts" "/js/main.js"}}
 {{template "header.html" .}}
+<div class="main container">
+  <div class="ui animated list">
+    {{range .posts}}
+      <a class="item" href="/post/index?stamp={{.Stamp}}">
+        <i class="right triangle icon"></i>
+        {{.Title}}
 
-<header class="hero-unit" style="background-color:#A9F16C">
-  <div class="container">
-    <div class="row">
-      <div class="hero-text">
-        <h1>{{.greeting}}</h1>
-        <p></p>
-      </div>
-    </div>
-  </div>
-</header>
-
-<div class="container">
-  <div class="row">
-    <div class="span6">
-      {{template "flash.html" .}}
-      <form action="/App/Hello" method="GET">
-          <input type="text" name="myName" /><br/>
-          <input type="submit" value="Say hello!" />
-      </form>
-    </div>
+      </a>
+      <!-- <div class="description">{{.Stamp}}</div> -->
+    {{end}}
   </div>
 </div>
 

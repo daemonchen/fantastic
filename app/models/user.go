@@ -2,33 +2,30 @@ package models
 
 import (
 	// "encoding/json"
-	"fmt"
 	"labix.org/v2/mgo"
 	"labix.org/v2/mgo/bson"
 )
 
 type User struct {
-	Id    bson.ObjectId `bson:"_id,omitempty"`
-	Name  string        `bson:"name"`
-	Phone string        `bson:"phone"`
-	Stamp string        `bson:"stamp"`
+	Id       bson.ObjectId `bson:"_id,omitempty"`
+	Name     string        `bson:"username"`
+	Password string        `bson:"password"`
+	// Stamp string        `bson:"stamp"`
 }
 
 func Collection(s *mgo.Session) *mgo.Collection {
-	return s.DB("customer_behavior").C("people")
+	return s.DB("fantastic").C("people")
 }
 
 func GetUserByName(s *mgo.Session, Name string) *User {
 	b := new(User)
-	Collection(s).Find(bson.M{"name": Name}).One(b)
-	fmt.Println(">>>>>>query result:", b)
+	Collection(s).Find(bson.M{"username": Name}).One(b)
 	return b
 }
 
 func GetAllUsers(s *mgo.Session) []User {
 	var result []User
 	Collection(s).Find(nil).Iter().All(&result)
-	fmt.Println(">>>>>>>>>all users: ", result)
 	return result
 }
 
