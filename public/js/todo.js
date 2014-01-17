@@ -7,6 +7,7 @@
 angular.module("fantastic",[]).config(function($interpolateProvider){
    $interpolateProvider.startSymbol('[[');
    $interpolateProvider.endSymbol(']]');
+   // $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
 })
 
 function TaskCtrl($scope, $http, $log) {
@@ -22,14 +23,13 @@ function TaskCtrl($scope, $http, $log) {
     return $http.get('/task/').
       success(function(data) {
         $scope.tasks = data.Tasks;
-        $log.log("tasks:>>>",$scope.tasks);
       }).
       error(logError);
   };
 
   $scope.addTodo = function() {
     $scope.working = true;
-    $http.post('/task/', {Title: $scope.todoText}).
+    $http.post('/task/newTask', {content: "asdf"},["json"]).
       error(logError).
       success(function() {
         refresh().then(function() {
@@ -41,7 +41,6 @@ function TaskCtrl($scope, $http, $log) {
 
   $scope.toggleDone = function(task) {
     data = {ID: task.ID, Title: task.Title, Done: !task.Done}
-    $log.log("before update task.done:",task.Done);
     $http.put('/task/', data).
       error(logError).
       success(function() {

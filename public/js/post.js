@@ -40,7 +40,7 @@ $(function(){
         dataType: "json",
         success: function (result) {
           console.log("doPostComment result:",result);
-          window.location.reload();
+          // window.location.reload();
           // window.localStorage.clear();
         },
         error: function (xhr, ajaxOptions, thrownError) {

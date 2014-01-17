@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	// "encoding/json"
+	"encoding/json"
 	"fantastic/app/models"
 	"github.com/jgraham909/revmgo"
 	"github.com/robfig/revel"
@@ -31,9 +31,11 @@ func (c *Task) ListTasks() revel.Result {
 	return c.RenderJson(result)
 }
 
-func (c *Task) NewTask(arg string) revel.Result {
-	print(">>>>>>NewTask:", arg)
-	return c.RenderJson("ff")
+func (c *Task) NewTask(content string) revel.Result {
+	print(">>>>>>NewTask:", content, "\n")
+	result := &models.Task{2, "c.Request.Body", false}
+	json.Marshal(result)
+	return c.RenderJson(result)
 }
 
 func (c *Task) GetTask() revel.Result {

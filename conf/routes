@@ -8,7 +8,7 @@ GET     /                                       App.Index
 
 # todo api
 GET /task                                       Task.ListTasks
-POST /task                                      Task.NewTask
+
 PUT  /task                                      Task.UpdateTask
 
 # Ignore favicon requests
