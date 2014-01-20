@@ -29,7 +29,7 @@ function TaskCtrl($scope, $http, $log) {
 
   $scope.addTodo = function() {
     $scope.working = true;
-    $http.post('/task/newTask', {content: "asdf"},["json"]).
+    $http.post('/task', {content: $scope.todoText, done: false}).
       error(logError).
       success(function() {
         refresh().then(function() {
