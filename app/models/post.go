@@ -13,33 +13,25 @@ type Post struct {
 	Stamp   string        `bson:"stamp"`
 }
 
-type posts []*Post
-
 func getPostsCollection(s *mgo.Session) *mgo.Collection {
 	return s.DB("fantastic").C("posts")
 }
-func (b *Post) Save(s *mgo.Session) error {
-	err := getPostsCollection(s).Insert(b)
+func SavePost(s *mgo.Session, id bson.ObjectId, title string, content string, stamp string) error {
+	err := getPostsCollection(s).Insert(&Post{id, title, content, stamp})
 	if err != nil {
 		panic(err)
 	}
 	return err
 }
 
-func GetPostModel(id bson.ObjectId, title string, content string, stamp string) *Post {
-	post := &Post{id, title, content, stamp}
-	return post
-}
-func GetAllPosts(s *mgo.Session) posts {
-	var posts posts
+func GetAllPosts(s *mgo.Session) (posts []*Post) {
 	getPostsCollection(s).Find(nil).All(&posts)
-	return posts
+	return
 }
 
-func GetPostByStamp(s *mgo.Session, stamp string) *Post {
-	p := new(Post)
-	getPostsCollection(s).Find(bson.M{"stamp": stamp}).One(p)
-	return p
+func GetPostByStamp(s *mgo.Session, stamp string) (p *Post) {
+	getPostsCollection(s).Find(bson.M{"stamp": stamp}).One(&p)
+	return
 }
 
 func UpdatePost(s *mgo.Session, stamp string, content string) error {

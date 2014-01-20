@@ -23,12 +23,6 @@ func GetUserByName(s *mgo.Session, Name string) *User {
 	return b
 }
 
-func GetAllUsers(s *mgo.Session) []User {
-	var result []User
-	Collection(s).Find(nil).Iter().All(&result)
-	return result
-}
-
 func (b *User) Save(s *mgo.Session) error {
 	_, err := Collection(s).Upsert(bson.M{"_id": b.Id}, b)
 	return err
