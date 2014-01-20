@@ -17,8 +17,6 @@ type Comment struct {
 	CommentTime   string        `bson:"commentTime"`
 }
 
-type comments []*Comment
-
 func getCommentCollection(s *mgo.Session) *mgo.Collection {
 	return s.DB("fantastic").C("comments")
 }
@@ -45,8 +43,7 @@ func SaveComment(s *mgo.Session, commentRaw string) error {
 	return nil
 }
 
-func GetCommentsByStamp(s *mgo.Session, stamp string) comments {
-	var comments comments
+func GetCommentsByStamp(s *mgo.Session, stamp string) (comments []*Comment) {
 	getCommentCollection(s).Find(bson.M{"relativeStamp": stamp}).All(&comments)
-	return comments
+	return
 }
