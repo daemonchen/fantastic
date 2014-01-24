@@ -37,12 +37,13 @@ func (c *Post) Index(stamp string) revel.Result {
 	c.Session[string(hashKey[:])] = strconv.FormatInt(randNum, 10)
 	CommentCache[strconv.FormatInt(randNum, 10)] = "true"
 
-	post := models.GetPostByStamp(c.MongoSession, stamp)
-	if len(post.Content) > 0 {
+	post, err := models.GetPostByStamp(c.MongoSession, stamp)
+	if err != nil {
+		revel.WARN.Println(err)
+		return c.Redirect(App.Index)
+	} else {
 		comments := models.GetCommentsByStamp(c.MongoSession, stamp)
 		return c.Render(controllerName, isLogin, post, comments)
-	} else {
-		return c.Redirect(App.Index)
 	}
 }
 
