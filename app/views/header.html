@@ -7,6 +7,9 @@
     <link rel="stylesheet" type="text/css" href="/public/css/semantic.min.css">
     <link rel="stylesheet" type="text/css" href="/public/css/semantic.css">
     <link rel="shortcut icon" type="image/png" href="/public/img/favicon.png">
+    {{range .moreStyles}}
+      <link rel="stylesheet" type="text/css" href="/public/{{.}}">
+    {{end}}
 
     <!-- <base target="_blank" /> -->
   </head>
@@ -34,7 +37,7 @@
         <a class="{{if eq .controllerName "todo"}}active{{end}} item" href="/todo/index">
           <i class="tasks icon"></i> ToDo
         </a>
-        <div class="item right menu">
+        <div class="item right buildFlag">
           <img src="https://drone.io/github.com/daemonchen/fantastic/status.png" />
         </div>
       </div>
