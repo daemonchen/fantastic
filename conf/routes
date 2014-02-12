@@ -5,6 +5,7 @@
 module:testrunner
 
 GET     /                                       App.Index
+GET     /google3eacb2a6a54b3156.html            Static.Serve(google3eacb2a6a54b3156.html)
 
 # todo api
 GET /task                                       Task.ListTasks
