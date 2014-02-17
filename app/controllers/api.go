@@ -93,7 +93,7 @@ func (c Api) Update() revel.Result {
 
 func (c Api) Message() revel.Result {
 	messageList := []interface{}{
-		&Live{"AAA直播室", "AAA直播室", 5, "live", "jry001", 1, "森德金融研究所", 1318561963000, 1, 0, true, "春节关门行情，开心！", "<div>hello</div>"},
+		&Live{"AAA直播室", "AAA直播室", 5, "live", "jry001", 1, "森德金融研究所", 123, 1, 0, true, "春节关门行情，开心！", "<div>hello</div>"},
 		&Message{"warning", "11f1", "warning", "hello", "2013-11-22T14:25:00.215Z", "#2293f5", 2},
 		&Message{"chat", "我的投顾f", "chat", "hello", "2013-11-22T14:25:00.215Z", "#2293f5", 272},
 		// &Message{"异动前哨", "qianshao", "上午大盘一下子就涨上去了又挂", "2013-11-22T14:25:00.215Z", "#2293f5", 273},
