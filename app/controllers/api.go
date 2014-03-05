@@ -7,7 +7,7 @@ import (
 	// "fmt"
 	// . "github.com/jbrukh/bayesian"
 	"github.com/jgraham909/revmgo"
-	"github.com/robfig/revel"
+	"github.com/revel/revel"
 	// "io/ioutil"
 	// "os"
 	// "strconv"

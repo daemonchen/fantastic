@@ -3,7 +3,7 @@ package controllers
 import (
 	// "fmt"
 	"github.com/jgraham909/revmgo"
-	"github.com/robfig/revel"
+	"github.com/revel/revel"
 )
 
 type ToDo struct {

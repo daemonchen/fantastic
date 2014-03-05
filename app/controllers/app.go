@@ -5,7 +5,7 @@ import (
 	"fantastic/app/models"
 	// "fmt"
 	"github.com/jgraham909/revmgo"
-	"github.com/robfig/revel"
+	"github.com/revel/revel"
 	// "labix.org/v2/mgo/bson"
 	// "strconv"
 	// "time"
