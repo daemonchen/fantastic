@@ -13,16 +13,14 @@
                           {{.Title}}
                         </a>
                     </h2>
-                    <div class="sub header">{{.Stamp}}</div>
+                    <div class="ui divider"></div>
                     <div class="ellipsis">{{raw .Content}}</div>
 
               <!-- <div class="description">{{.Stamp}}</div> -->
                 </div>
             {{end}}
         </div>
-        <div class="five wide column">
-            <div class="ui segment">archive&tag</div>
-        </div>
+        {{template "sidebar.html" .}}
     </div>
 </div>
 
