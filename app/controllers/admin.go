@@ -42,6 +42,7 @@ func (c Admin) Login(username string, password string) revel.Result {
 }
 
 func (c Admin) Register(username string, password string) revel.Result {
+	pwd := fmt.Sprintf("%x", md5.Sum([]byte(password)))
 	user := &models.User{bson.NewObjectId(), username, pwd}
 	err := user.Save(c.MongoSession)
 	if err != nil {

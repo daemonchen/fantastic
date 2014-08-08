@@ -1,15 +1,22 @@
 body {
     margin: 0;
     padding: 0;
+    background: #f3f3f3;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    color: #A1CF64;
 }
 
 .container {
-    width: 78%;
-    margin: 0 auto;
+    margin: 0px 325px 0px 325px;
 }
 
 .main {
-    padding-top: 63px;
     padding-bottom: 100px;
 }
 
@@ -24,4 +31,12 @@ body {
 
 .ui.menu .item.buildFlag {
     padding: 10px;
+}
+
+.segment {
+    margin: 0px 0px 3em;
+    padding-top: 70px;
+    padding-bottom: 30px;
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #DDDDDD;
 }

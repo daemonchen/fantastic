@@ -3,17 +3,33 @@
 {{set . "title" "Home"}}
 {{append . "moreScripts" "/js/main.js"}}
 {{template "header.html" .}}
-<div class="main container">
-  <div class="ui animated list">
-    {{range .posts}}
-      <a class="item" href="/post/index?stamp={{.Stamp}}">
-        <i class="right triangle icon"></i>
-        {{.Title}}
+<div class="segment">
+    <div class="container">
+        <div class="introduction">
 
-      </a>
+            <h1 class="ui dividing header">
+                <a href="/">Daemon Chen</a>
+            </h1>
+
+            <p>Show me the code,talk is cheap</p>
+
+
+        </div>
+
+    </div>
+</div>
+<div class="main container">
+    {{range .posts}}
+        <h2 class="ui header">
+            <a class="item" href="/post/index?stamp={{.Stamp}}">
+              {{.Title}}
+            </a>
+            <div class="sub header">{{.Stamp}}</div>
+        </h2>
+        <p>{{raw .Content}}</p>
+
       <!-- <div class="description">{{.Stamp}}</div> -->
     {{end}}
-  </div>
 </div>
 
 {{template "footer.html" .}}
