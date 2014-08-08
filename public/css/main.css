@@ -19,7 +19,7 @@ a:hover {
 }
 
 .container {
-    margin: 0px 325px 0px 325px;
+    margin: 0px 125px 0px 125px;
 }
 
 .main {
@@ -76,6 +76,7 @@ div.ellipsis {
     font-size: 12px;
     color: #999;
     padding: 10px 0;
+    background: #000;
 }
 
 .go-top {

@@ -4,17 +4,26 @@
 {{append . "moreScripts" "/js/main.js"}}
 {{template "header.html" .}}
 <div class="main container">
-    {{range .posts}}
-        <h2 class="ui header">
-            <a class="item" href="/post/index?stamp={{.Stamp}}">
-              {{.Title}}
-            </a>
-            <div class="sub header">{{.Stamp}}</div>
-        </h2>
-        <div class="ellipsis">{{raw .Content}}</div>
+    <div class="ui grid">
+        <div class="eleven wide column">
+            {{range .posts}}
+                <div class="ui segment">
+                    <h2 class="ui header">
+                        <a class="item" href="/post/index?stamp={{.Stamp}}">
+                          {{.Title}}
+                        </a>
+                    </h2>
+                    <div class="sub header">{{.Stamp}}</div>
+                    <div class="ellipsis">{{raw .Content}}</div>
 
-      <!-- <div class="description">{{.Stamp}}</div> -->
-    {{end}}
+              <!-- <div class="description">{{.Stamp}}</div> -->
+                </div>
+            {{end}}
+        </div>
+        <div class="five wide column">
+            <div class="ui segment">archive&tag</div>
+        </div>
+    </div>
 </div>
 
 {{template "footer.html" .}}
