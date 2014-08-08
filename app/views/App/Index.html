@@ -6,19 +6,22 @@
 <div class="main container">
     <div class="ui grid">
         <div class="eleven wide column">
-            {{range .posts}}
-                <div class="ui segment">
-                    <h2 class="ui header">
+            <div class="ui segment">
+                {{range .posts}}
+                    <h2 class="ui header ellipsis">
                         <a class="item" href="/post/index?stamp={{.Stamp}}">
                           {{.Title}}
                         </a>
                     </h2>
+                    <div class="msg">
+                        <span><i class="time icon"></i>43min ago</span>
+                    </div>
                     <div class="ui divider"></div>
-                    <div class="ellipsis">{{raw .Content}}</div>
+                    <!-- <div class="ellipsis">{{raw .Content}}</div> -->
 
-              <!-- <div class="description">{{.Stamp}}</div> -->
-                </div>
-            {{end}}
+                  <!-- <div class="description">{{.Stamp}}</div> -->
+                {{end}}
+            </div>
         </div>
         {{template "sidebar.html" .}}
     </div>
