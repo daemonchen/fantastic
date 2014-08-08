@@ -2,25 +2,23 @@
 {{append . "moreStyles" "/css/main.css"}}
 {{set . "title" "Home"}}
 {{append . "moreScripts" "/js/main.js"}}
+{{append . "moreScripts" "/js/page/home.js"}}
 {{template "header.html" .}}
-<div class="main container">
+<div class="main container" ng-controller='HomeController'>
     <div class="ui grid">
         <div class="eleven wide column">
             <div class="ui segment">
-                {{range .posts}}
+                <div ng-repeat='post in posts'>
                     <h2 class="ui header ellipsis">
-                        <a class="item" href="/post/index?stamp={{.Stamp}}">
-                          {{.Title}}
+                        <a class="item" href="/post/index?stamp=[[post.Stamp]]">
+                          [[post.Title]]
                         </a>
                     </h2>
                     <div class="msg">
-                        <span><i class="time icon"></i>43min ago</span>
+                        <span><i class="time icon"></i>[[post.Date]]</span>
                     </div>
                     <div class="ui divider"></div>
-                    <!-- <div class="ellipsis">{{raw .Content}}</div> -->
-
-                  <!-- <div class="description">{{.Stamp}}</div> -->
-                {{end}}
+                </div>
             </div>
         </div>
         {{template "sidebar.html" .}}

@@ -15,11 +15,14 @@ type App struct {
 	*revel.Controller
 	revmgo.MongoController
 }
-type posts []interface{}
 
 func (c App) Index() revel.Result {
 	controllerName := "home"
-	posts := models.GetAllPosts(c.MongoSession)
+	return c.Render(controllerName)
+}
 
-	return c.Render(controllerName, posts)
+func (c App) GetAllPosts() revel.Result {
+	posts := models.GetAllPosts(c.MongoSession)
+	return c.RenderJson(posts)
+
 }
