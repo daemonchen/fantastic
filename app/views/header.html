@@ -31,7 +31,7 @@
     <link rel="alternate" type="application/rss+xml" title="Daemon Chen" href="/rss/">
     <link rel="canonical" href="http://www.classical1988.com/">
 
-    <!-- <base target="_blank" /> -->
+    <base target="_blank" />
   </head>
   <body>
     <div class="ui green inverted menu fixed">
@@ -42,21 +42,14 @@
         <a class="{{if eq .controllerName "about"}}active{{end}} item">
           <i class="info icon"></i> About me
         </a>
-        <a class="item {{if eq .controllerName "edit"}}active{{end}}" href="/edit/index">
-          <i class="edit icon"></i> Edit
-        </a>
+
          <a class="item" href="https://github.com/daemonchen/fantastic">
           <i class="github icon"></i> Github
         </a>
-        <!-- <a class="{{if eq .controllerName "segment"}}active{{end}} item" href="/segment/index">
-          <i class="terminal icon"></i> Segment
-        </a> -->
         <a class="item" href="http://115.29.47.52:28778/">
           <i class="wrench icon"></i> Monitor
         </a>
-        <a class="{{if eq .controllerName "todo"}}active{{end}} item" href="/todo/index">
-          <i class="tasks icon"></i> ToDo
-        </a>
+
         <a class="item right buildFlag" href="https://drone.io/github.com/daemonchen/fantastic/latest">
           <img src="https://drone.io/github.com/daemonchen/fantastic/status.png" width="80" height="18"/>
         </a>

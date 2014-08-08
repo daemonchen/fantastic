@@ -17,7 +17,7 @@ type Edit struct {
 
 func (c Edit) Index() revel.Result {
 	if c.Session["islogin"] != "true" {
-		return c.Redirect(Login.Index)
+		return c.Redirect(Admin.Index)
 	}
 	controllerName := "edit"
 	return c.Render(controllerName)

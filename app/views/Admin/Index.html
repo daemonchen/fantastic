@@ -1,0 +1,42 @@
+{{set . "title" "Admin"}}
+{{append . "moreStyles" "/css/main.css"}}
+{{append . "moreScripts" "/js/main.js"}}
+{{append . "moreScripts" "/js/login.js"}}
+{{append . "moreScripts" "/js/register.js"}}
+{{append . "moreScripts" "/js/md5.js"}}
+{{template "header.html" .}}
+<div class="main container">
+    <div class="ui two column grid">
+        <div class="column">
+            <div class="ui fluid form segment" id="loginForm">
+                <h3 class="ui header">登录</h3>
+                <div class="field">
+                    <label>用户名</label>
+                    <input placeholder="用户名" type="text" id="username">
+                </div>
+                <div class="field">
+                    <label>密码</label>
+                    <input type="password" id="password">
+                </div>
+                <div class="ui blue submit button" id="login">登录</div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="ui fluid form segment" id="registerForm">
+                <h3 class="ui header">注册</h3>
+
+                <div class="field">
+                    <label>用户名</label>
+                    <input placeholder="用户名" type="text" id="username">
+                </div>
+                <div class="field">
+                    <label>密码</label>
+                    <input type="password" id="password">
+                </div>
+
+                <div class="ui blue submit button" id="register">注册</div>
+            </div>
+        </div>
+    </div>
+</div>
+{{template "footer.html" .}}

@@ -1,23 +1,27 @@
-body{
-  margin: 0;
-  padding: 0;
-  background-color: rgba(161,207,100,0.2);
+body {
+    margin: 0;
+    padding: 0;
 }
-.container{
-  width: 78%;
-  margin: 0 auto;
+
+.container {
+    width: 78%;
+    margin: 0 auto;
 }
-.main{
-  padding-top: 63px;
-  padding-bottom: 100px;
+
+.main {
+    padding-top: 63px;
+    padding-bottom: 100px;
 }
-#menu{
-  position: fixed;
-  top:63px;
+
+#menu {
+    position: fixed;
+    top: 63px;
 }
-.ui.breadcrumb{
-  margin: 0;
+
+.ui.breadcrumb {
+    margin: 0;
 }
-.ui.menu .item.buildFlag{
-  padding: 10px;
+
+.ui.menu .item.buildFlag {
+    padding: 10px;
 }
