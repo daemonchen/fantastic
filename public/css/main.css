@@ -2,14 +2,20 @@ body {
     margin: 0;
     padding: 0;
     background: #f3f3f3;
+    line-height: 1.231;
 }
 
 a {
+    color: #999;
     text-decoration: none;
 }
 
+a:link {
+    color: #333;
+}
+
 a:hover {
-    color: #A1CF64;
+    color: #76cc1e;
 }
 
 .container {
@@ -33,10 +39,53 @@ a:hover {
     padding: 10px;
 }
 
-.segment {
+.home.segment {
     margin: 0px 0px 3em;
-    padding-top: 70px;
-    padding-bottom: 30px;
-    background-color: #FFFFFF;
-    border-bottom: 1px solid #DDDDDD;
+    padding-top: 90px;
+    padding-bottom: 0px;
+    /*background-color: #d5d5d5;*/
+    color: #333;
+}
+
+.home.segment .introduction {
+    text-align: center;
+}
+
+div.ellipsis {
+    height: 110px;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.footer {
+    padding: 0px;
+    text-align: center;
+    color: #f1f1f1;
+    background: #363636;
+}
+
+.footer .tip {
+    padding: 30px 0;
+    color: #76cc1e;
+    border-bottom: 1px dashed #76cc1e;
+}
+
+.footer .icp {
+    font-size: 12px;
+    color: #999;
+    padding: 10px 0;
+}
+
+.go-top {
+    padding: 14px 11px;
+    position: fixed;
+    background: #ccc;
+    right: 60px;
+    bottom: 60px;
+}
+
+.go-top i.icon {
+    margin: 0;
 }

@@ -3,21 +3,6 @@
 {{set . "title" "Home"}}
 {{append . "moreScripts" "/js/main.js"}}
 {{template "header.html" .}}
-<div class="segment">
-    <div class="container">
-        <div class="introduction">
-
-            <h1 class="ui dividing header">
-                <a href="/">Daemon Chen</a>
-            </h1>
-
-            <p>Show me the code,talk is cheap</p>
-
-
-        </div>
-
-    </div>
-</div>
 <div class="main container">
     {{range .posts}}
         <h2 class="ui header">
@@ -26,7 +11,7 @@
             </a>
             <div class="sub header">{{.Stamp}}</div>
         </h2>
-        <p>{{raw .Content}}</p>
+        <div class="ellipsis">{{raw .Content}}</div>
 
       <!-- <div class="description">{{.Stamp}}</div> -->
     {{end}}
