@@ -26,7 +26,7 @@ func (c Edit) Index() revel.Result {
 func (c *Edit) Post(title string, content string) revel.Result {
 	responseJson := &result{"success", "article saved success"}
 	// post := models.GetPostModel(bson.NewObjectId(), title, content, strconv.FormatInt(time.Now().Unix(), 10))
-	err := models.SavePost(c.MongoSession, bson.NewObjectId(), title, content, strconv.FormatInt(time.Now().Unix(), 10))
+	err := models.SavePost(c.MongoSession, bson.NewObjectId(), title, content, strconv.FormatInt(time.Now().UnixNano()/1e6, 10))
 	if err != nil {
 		panic(err)
 		return c.RenderJson(&result{"failed", "article saved failed"})

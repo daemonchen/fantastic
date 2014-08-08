@@ -8,11 +8,13 @@ fantastic.controller('HomeController', function($scope, $http, $log, _){
   var init = function() {
     return $http.get('/app/getAllPosts').
       success(function(data) {
-        _.each(data, function(v,k){
-            console.log(v.Stamp);
-            v.Date = moment(parseInt(v.Stamp)).fromNow();
-        });
-        $scope.posts = data;
+        if (!!data && data.length != 0 && data != "null") {
+            _.each(data, function(v,k){
+                console.log(v.Stamp);
+                v.Date = moment(parseInt(v.Stamp)).fromNow();
+            });
+            $scope.posts = data;
+        };
       }).
       error(logError);
   };

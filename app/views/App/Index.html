@@ -1,7 +1,6 @@
 {{set . "controllerName" .controllerName}}
 {{append . "moreStyles" "/css/main.css"}}
 {{set . "title" "Home"}}
-{{append . "moreScripts" "/js/main.js"}}
 {{append . "moreScripts" "/js/page/home.js"}}
 {{template "header.html" .}}
 <div class="main container" ng-controller='HomeController'>

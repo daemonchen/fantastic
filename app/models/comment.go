@@ -38,8 +38,8 @@ func SaveComment(s *mgo.Session, commentRaw string) error {
 		panic(err)
 		return err
 	}
-	manager := GetManager(s)
-	go sendMailToManager(manager, comment)
+	// manager := GetManager(s)
+	// go sendMailToManager(manager, comment)
 	return nil
 }
 
