@@ -4,7 +4,7 @@ fantastic.controller('HomeController', function($scope, $http, $log, _){
   var logError = function(data, status) {
     $log.log('code '+status+': '+data);
   };
-
+  $scope.loading = true;
   var init = function() {
     return $http.get('/app/getAllPosts').
       success(function(data) {
@@ -14,6 +14,8 @@ fantastic.controller('HomeController', function($scope, $http, $log, _){
                 v.Date = moment(parseInt(v.Stamp)).fromNow();
             });
             $scope.posts = data;
+            $scope.loading = false;
+
         };
       }).
       error(logError);
