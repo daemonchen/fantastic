@@ -234,3 +234,19 @@ div.ellipsis {
     padding-top: 10px;
     padding-bottom: 100px;
 }
+/*==================reset .ui.segment==============*/
+h2,h4{
+    padding: 0;
+    margin: 0;
+}
+.ui.grid > .column{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.ui.grid > .column, .ui.grid > .row > .column{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.ui.segment{
+    /*padding:10px;*/
+}

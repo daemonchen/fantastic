@@ -11,8 +11,9 @@
             <div class="ui segment">
                 <!-- title -->
                 {{template "common/spinner.html" .}}
-                <h2 class="ui header">[[post.Title]]</h2>
-                <h4 class="ui header">[[time]]</h4>
+                <h2 class="ui">[[post.Title]]</h2>
+                <div class="ui divider"></div>
+                <h4 class="ui">[[time]]</h4>
                 {{if eq .isLogin "true"}}
                 <div class="ui green label horizontal">点击文章内容可以编辑</div>
                 <div class="ui right menu purple button mini horizontal" id="save">
