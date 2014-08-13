@@ -1,11 +1,12 @@
+{{append . "moreScripts" "/js/common/sidebar.js"}}
 <div class="five wide column">
-    <div class="ui segment">
+    <div class="ui segment" ng-controller="ArchiveSidebarController">
         <h2>archive</h2>
         <div class="ui divider">
         </div>
         {{template "common/spinner.html" .}}
     </div>
-    <div class="ui segment">
+    <div class="ui segment" ng-controller="TagSidebarController">
         <h2>tags</h2>
         <div class="ui divider">
         </div>
