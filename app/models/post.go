@@ -29,8 +29,8 @@ func GetAllPosts(s *mgo.Session) (posts []*Post) {
 	return
 }
 
-func GetPostByStamp(s *mgo.Session, stamp string) (p *Post, err error) {
-	err = getPostsCollection(s).Find(bson.M{"stamp": stamp}).One(&p)
+func GetPostByStamp(s *mgo.Session, stamp string) (p *Post) {
+	getPostsCollection(s).Find(bson.M{"stamp": stamp}).One(&p)
 	return
 }
 

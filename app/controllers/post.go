@@ -28,7 +28,7 @@ func (c *Post) generateSessionKey() []byte {
 	return md5Key.Sum([]byte("daemonchen"))
 
 }
-func (c *Post) Index(stamp string) revel.Result {
+func (c *Post) Index() revel.Result {
 	controllerName := "home"
 	isLogin := c.Session["islogin"]
 
@@ -36,17 +36,14 @@ func (c *Post) Index(stamp string) revel.Result {
 	hashKey := c.generateSessionKey()
 	c.Session[string(hashKey[:])] = strconv.FormatInt(randNum, 10)
 	CommentCache[strconv.FormatInt(randNum, 10)] = "true"
+	return c.Render(controllerName, isLogin)
 
-	post, err := models.GetPostByStamp(c.MongoSession, stamp)
-	if err != nil {
-		revel.WARN.Println(err)
-		return c.Redirect(App.Index)
-	} else {
-		comments := models.GetCommentsByStamp(c.MongoSession, stamp)
-		return c.Render(controllerName, isLogin, post, comments)
-	}
 }
+func (c *Post) GetPostByStamp(stamp string) revel.Result {
+	post := models.GetPostByStamp(c.MongoSession, stamp)
+	return c.RenderJson(post)
 
+}
 func (c *Post) Delete(stamp string) revel.Result {
 	// controllerName := "home"
 	if isLogin := c.Session["islogin"]; isLogin == "true" {

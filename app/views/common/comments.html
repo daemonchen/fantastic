@@ -1,0 +1,42 @@
+<h1 class="ui dividing">Comments</h1>
+<div class="ui comments">
+    {{range .comments}}
+    <div class="comment">
+        <a class="avatar">
+            <img data="{{.UserEmail}}">
+        </a>
+        <div class="content">
+            <a class="author">{{.UserName}}</a>
+            <div class="metadata">
+                <div class="date">{{.CommentTime}}</div>
+            </div>
+            <div class="text">
+                {{raw .CommentText}}
+            </div>
+            <div class="actions">
+                <a class="reply">Reply</a>
+                <!-- <a class="delete">Delete</a> -->
+            </div>
+        </div>
+    </div>
+    <div class="ui divider"></div>
+    {{end}}
+</div>
+<form class="ui reply form">
+    <div class="field">
+        <textarea id="comment"></textarea>
+    </div>
+    <div class="two fields">
+        <div class="field">
+            <label>Nick Name</label>
+            <input placeholder="please input your nickname" type="text" id="username">
+        </div>
+        <div class="field">
+            <label>Email</label>
+            <input placeholder="please input your email" type="text" id="email">
+        </div>
+    </div>
+    <div class="ui fluid blue labeled submit icon button">
+        <i class="icon edit"></i> Add Reply
+    </div>
+</form>
