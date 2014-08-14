@@ -1,6 +1,7 @@
 {{set . "title" "Post"}}
 {{set . "controllerName" .controllerName}}
 {{append . "moreStyles" "/css/main.css"}}
+{{append . "moreStyles" "/css/post.css"}}
 {{append . "moreScripts" "/js/ckeditor.js"}}
 {{append . "moreScripts" "/js/lib/md5.js"}}
 {{append . "moreScripts" "/js/page/post.js"}}
@@ -15,18 +16,13 @@
                 <div class="ui divider"></div>
                 <h4 class="ui">[[time]]</h4>
                 {{if eq .isLogin "true"}}
-                <div class="ui green label horizontal">点击文章内容可以编辑</div>
-                <div class="ui right menu purple button mini horizontal" id="save">
-                    <i class="save icon"></i>
-                    save
-                </div>
-                <div class="ui right menu purple button mini horizontal" id="delete" >
-                    <i class="delete icon"></i>
-                    delete
-                </div>
+                <i class="edit icon" id="editor"></i>
+                <i class="save icon" id="save"></i>
+                <i class="delete icon" id="delete"></i>
+
                 {{end}}
                 <!-- content -->
-                <div id="editor" {{if eq .isLogin "true"}}contenteditable="true"{{end}}ng-bind-html="post.Content"></div>
+                <div id="editor" ng-bind-html="post.Content"></div>
                 <!-- comments -->
             </div>
         </div>

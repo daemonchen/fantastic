@@ -4,8 +4,7 @@ underscore.factory('_', function() {
 });
 
 var fantastic = angular.module("fantastic", ["underscore","ngSanitize"])
-    .config(function($interpolateProvider, $locationProvider) {
-        $locationProvider.html5Mode(true);
+    .config(function($interpolateProvider) {
         $interpolateProvider.startSymbol('[[');
         $interpolateProvider.endSymbol(']]');
     })

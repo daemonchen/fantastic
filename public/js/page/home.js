@@ -10,7 +10,6 @@ fantastic.controller('HomeController', function($scope, $http, $log, _){
       success(function(data) {
         if (!!data && data.length != 0 && data != "null") {
             _.each(data, function(v,k){
-                console.log(v.Stamp);
                 v.Date = moment(parseInt(v.Stamp)).fromNow();
             });
             $scope.posts = data;
