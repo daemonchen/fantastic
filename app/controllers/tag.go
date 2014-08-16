@@ -39,7 +39,7 @@ func (c *Tag) GetByStamp(stamp string) revel.Result {
 }
 
 func (c *Tag) GetByTag(tag string) revel.Result {
-	tags := models.GetByStamp(c.MongoSession, tag)
+	tags := models.GetByTag(c.MongoSession, tag)
 	return c.RenderJson(tags)
 }
 

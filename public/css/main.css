@@ -266,3 +266,10 @@ a.count_livid,a.count_livid:hover,a.count_livid:link{
     margin-right: 5px;
     font-size: 12px;
 }
+.tags-cloud{
+    float: left;
+    padding: 10px;
+}
+#hiddenTag{
+    display: none;
+}
