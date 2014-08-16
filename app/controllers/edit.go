@@ -24,14 +24,14 @@ func (c Edit) Index() revel.Result {
 
 }
 func (c *Edit) Post(title string, content string) revel.Result {
-	responseJson := &result{"success", "article saved success"}
+	stamp := strconv.FormatInt(time.Now().UnixNano()/1e6, 10)
 	// post := models.GetPostModel(bson.NewObjectId(), title, content, strconv.FormatInt(time.Now().Unix(), 10))
-	err := models.SavePost(c.MongoSession, bson.NewObjectId(), title, content, strconv.FormatInt(time.Now().UnixNano()/1e6, 10))
+	err := models.SavePost(c.MongoSession, bson.NewObjectId(), title, content, stamp)
 	if err != nil {
 		panic(err)
-		return c.RenderJson(&result{"failed", "article saved failed"})
+		return c.RenderJson(&Result{"failed", "article saved failed"})
 	} else {
 		revel.INFO.Println("post to save success")
-		return c.RenderJson(responseJson)
+		return c.RenderJson(&BayesLearnResult{"success", stamp})
 	}
 }

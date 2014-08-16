@@ -15,7 +15,7 @@ type Admin struct {
 	revmgo.MongoController
 }
 
-type result struct {
+type Result struct {
 	status string
 	data   string
 }
@@ -26,14 +26,14 @@ func (c Admin) Index() revel.Result {
 }
 
 func (c Admin) Login(username string, password string) revel.Result {
-	responseJson := &result{}
+	responseJson := &Result{}
 	user := models.GetUserByName(c.MongoSession, username)
 	if password == user.Password {
 		c.Response.Status = 200
 		c.Session["islogin"] = "true"
 		return c.RenderJson(responseJson)
 	} else {
-		responseJson = &result{"caicaikana", "login failed"}
+		responseJson = &Result{"caicaikana", "login failed"}
 		c.Response.Status = 403
 		c.Session["islogin"] = "false"
 		return c.RenderJson(responseJson)
@@ -47,9 +47,9 @@ func (c Admin) Register(username string, password string) revel.Result {
 	err := user.Save(c.MongoSession)
 	if err != nil {
 		panic(err)
-		return c.RenderJson(&result{"failed", "err"})
+		return c.RenderJson(&Result{"failed", "err"})
 	} else {
 		revel.INFO.Println("register success")
-		return c.RenderJson(&result{"success", "register"})
+		return c.RenderJson(&Result{"success", "register"})
 	}
 }
