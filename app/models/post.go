@@ -41,7 +41,7 @@ func SavePost(s *mgo.Session, title string, content string, stamp string) error 
 }
 
 func GetAllPosts(s *mgo.Session) (posts []*Post) {
-	err := getPostsCollection(s).Find(nil).All(&posts)
+	err := getPostsCollection(s).Find(nil).Sort("-stamp").All(&posts)
 	if err != nil {
 		return
 	}

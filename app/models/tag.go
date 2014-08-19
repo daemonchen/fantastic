@@ -41,7 +41,7 @@ func GetTagsByStamp(s *mgo.Session, stamp string) (tags []*Tag) {
 }
 
 func GetTagsByTag(s *mgo.Session, tag string) (tags []*Tag) {
-	getTagsCollection(s).Find(bson.M{"tag": tag}).All(&tags)
+	getTagsCollection(s).Find(bson.M{"tag": tag}).Sort("-Stamp").All(&tags)
 	for _, tag := range tags {
 		tag.AddMeta(s)
 	}
