@@ -7,17 +7,33 @@ import (
 )
 
 type Post struct {
-	Id      bson.ObjectId `bson:"_id,omitempty"`
-	Title   string        `bson:"title"`
-	Content string        `bson:"content"`
-	Stamp   string        `bson:"stamp"`
+	// Id      bson.ObjectId          `bson:"_id,omitempty"`
+	Title   string                 `bson:"title"`
+	Content string                 `bson:"content"`
+	Stamp   string                 `bson:"stamp"`
+	Meta    map[string]interface{} `bson:",omitempty"`
 }
 
 func getPostsCollection(s *mgo.Session) *mgo.Collection {
 	return s.DB("fantastic").C("posts")
 }
-func SavePost(s *mgo.Session, id bson.ObjectId, title string, content string, stamp string) error {
-	err := getPostsCollection(s).Insert(&Post{id, title, content, stamp})
+
+func (post *Post) AddMeta(s *mgo.Session) {
+	if post.Meta == nil {
+		post.Meta = make(map[string]interface{})
+	}
+	post.Meta["Tags"] = GetTagsByStamp(s, post.Stamp)
+	// post.Meta["markdown"] = template.HTML(string(blackfriday.MarkdownBasic([]byte(post.Body))))
+
+	// if len(post.Body) > trimLength {
+	// 	post.Meta["teaser"] = template.HTML(string(blackfriday.MarkdownBasic([]byte(post.Body[0:trimLength]))))
+	// } else {
+	// 	post.Meta["teaser"] = template.HTML(string(blackfriday.MarkdownBasic([]byte(post.Body[0:len(post.Body)]))))
+	// }
+}
+
+func SavePost(s *mgo.Session, title string, content string, stamp string) error {
+	err := getPostsCollection(s).Insert(&Post{Title: title, Content: content, Stamp: stamp})
 	if err != nil {
 		panic(err)
 	}
@@ -25,7 +41,13 @@ func SavePost(s *mgo.Session, id bson.ObjectId, title string, content string, st
 }
 
 func GetAllPosts(s *mgo.Session) (posts []*Post) {
-	getPostsCollection(s).Find(nil).All(&posts)
+	err := getPostsCollection(s).Find(nil).All(&posts)
+	if err != nil {
+		return
+	}
+	for _, post := range posts {
+		post.AddMeta(s)
+	}
 	return
 }
 

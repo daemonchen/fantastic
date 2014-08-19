@@ -29,8 +29,10 @@
                                     <div style="margin-top:10px;">
                                         <i class="time icon"></i>[[post.Date]]
                                         <i class="tag icon"></i>
-                                        <a href="#">[example]</a>
-                                        <a href="#">[example]</a>
+
+                                        <a ng-repeat="tag in post.Meta.Tags" href="/list/index?tag=[[tag.Tag]]">
+                                            [[tag.Tag]]
+                                        </a>
                                     </div>
                                 </td>
                                 <td width="50" align="right" valign="middle">

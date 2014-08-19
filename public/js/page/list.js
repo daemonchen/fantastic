@@ -7,7 +7,7 @@ fantastic.controller('ListController', function($scope, $http, $log, _){
   $scope.loading = true;
   $scope.tag = $("#hiddenTag").html();
   var init = function() {
-    return $http.get('/tag/getByTag',{params: {tag: $scope.tag }}).
+    return $http.get('/tag/getTagsByTag',{params: {tag: $scope.tag }}).
       success(function(data) {
         $log.info()
         if (!!data && data.length != 0 && data != "null") {

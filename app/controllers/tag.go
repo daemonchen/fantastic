@@ -8,7 +8,7 @@ import (
 	"github.com/revel/revel"
 	// "github.com/revel/revel/cache"
 	// "io"
-	"labix.org/v2/mgo/bson"
+	// "labix.org/v2/mgo/bson"
 	// "fmt"
 	// "math/rand"
 	// "strconv"
@@ -21,7 +21,7 @@ type Tag struct {
 }
 
 func (c *Tag) Save(tag string, stamp string, title string) revel.Result {
-	t := &models.Tag{bson.NewObjectId(), tag, stamp, title}
+	t := &models.Tag{Tag: tag, Stamp: stamp, Title: title}
 	err := t.Save(c.MongoSession)
 	if err != nil {
 		return c.RenderJson(&BayesLearnResult{"failed", tag})
@@ -33,13 +33,8 @@ func (c *Tag) GetAllTags() revel.Result {
 	return c.RenderJson(tags)
 }
 
-func (c *Tag) GetByStamp(stamp string) revel.Result {
-	tags := models.GetByStamp(c.MongoSession, stamp)
-	return c.RenderJson(tags)
-}
-
-func (c *Tag) GetByTag(tag string) revel.Result {
-	tags := models.GetByTag(c.MongoSession, tag)
+func (c *Tag) GetTagsByTag(tag string) revel.Result {
+	tags := models.GetTagsByTag(c.MongoSession, tag)
 	return c.RenderJson(tags)
 }
 
