@@ -1,4 +1,4 @@
-fantastic.controller('HomeController', function($scope, $http, $log, _){
+fantastic.controller('HomeController', function($scope, $http, $log, _, postService){
   $scope.posts = [];
 
   var logError = function(data, status) {
@@ -13,6 +13,7 @@ fantastic.controller('HomeController', function($scope, $http, $log, _){
                 v.Date = moment(parseInt(v.Stamp)).fromNow();
             });
             $scope.posts = data;
+            postService.addPosts(data);
             $scope.loading = false;
 
         };

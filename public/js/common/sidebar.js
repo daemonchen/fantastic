@@ -1,7 +1,7 @@
-fantastic.controller('ArchiveSidebarController', function($scope, $http, $log, _){
+fantastic.controller('ArchiveSidebarController', function($scope, $http, $log, _, postService){
 
   $scope.loading = true;
-
+  $log.info(postService.getPosts());
 
 })
 
