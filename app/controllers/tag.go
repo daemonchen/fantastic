@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	// "encoding/json"
+	"encoding/json"
 	// "crypto/md5"
 	"fantastic/app/models"
 	"github.com/jgraham909/revmgo"
@@ -20,13 +20,14 @@ type Tag struct {
 	revmgo.MongoController
 }
 
-func (c *Tag) Save(tag string, stamp string, title string) revel.Result {
-	t := &models.Tag{Tag: tag, Stamp: stamp, Title: title}
-	err := t.Save(c.MongoSession)
+func (c *Tag) Save(tag *models.Tag) revel.Result {
+	decoder := json.NewDecoder(c.Request.Body)
+	decoder.Decode(&tag)
+	err := tag.Save(c.MongoSession)
 	if err != nil {
-		return c.RenderJson(&BayesLearnResult{"failed", tag})
+		return c.RenderJson(&tag)
 	}
-	return c.RenderJson(&BayesLearnResult{"success", tag})
+	return c.RenderJson(&tag)
 }
 func (c *Tag) GetAllTags() revel.Result {
 	tags := models.GetAllTags(c.MongoSession)

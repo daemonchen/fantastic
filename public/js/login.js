@@ -1,22 +1,18 @@
-$(function() {
-    var login = function() {
-        var username = $("#loginForm #username").val();
-        var password = $("#loginForm #password").val();
-        var data = {
-            username: username,
-            password: MD5(password)
-        };
-        $.ajax({
-            type: "GET",
-            url: '/admin/login',
-            data: data, //{timestamp:timestamp},
-            success: function(xhr, result, obj) {
-                window.location.href = "/";
-            },
-            error: function(obj, err, xhr) {
-                alert(err);
-            }
-        });
+fantastic.controller('LoginController', function($scope, $http, $log, _) {
+    $scope.logError = function(data, status) {
+        $log.log('code ' + status + ': ' + data);
     };
-    $("#login").click(login);
-});
+
+    $scope.login = function() {
+        return $http.get('/admin/login', {
+            params: {
+                username: $scope.username,
+                password: MD5($scope.password)
+            }
+        }).
+        success(function() {
+            window.location.href = "/";
+        }).
+        error($scope.logError);
+    }
+})

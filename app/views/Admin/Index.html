@@ -1,40 +1,40 @@
 {{set . "title" "Admin"}}
 {{append . "moreStyles" "/css/main.css"}}
 {{append . "moreScripts" "/js/main.js"}}
+{{append . "moreScripts" "/js/lib/md5.js"}}
 {{append . "moreScripts" "/js/login.js"}}
 {{append . "moreScripts" "/js/register.js"}}
-{{append . "moreScripts" "/js/lib/md5.js"}}
 {{template "header.html" .}}
 <div class="main container">
     <div class="ui two column grid">
-        <div class="column">
-            <div class="ui fluid form segment" id="loginForm">
+        <div class="column" ng-controller="LoginController">
+            <div class="ui fluid form segment">
                 <h3 class="ui header">登录</h3>
                 <div class="field">
                     <label>用户名</label>
-                    <input placeholder="用户名" type="text" id="username">
+                    <input placeholder="用户名" type="text" ng-model="username">
                 </div>
                 <div class="field">
                     <label>密码</label>
-                    <input type="password" id="password">
+                    <input type="password" ng-model="password">
                 </div>
-                <div class="ui blue submit button" id="login">登录</div>
+                <div class="ui blue submit button" ng-click="login()">登录</div>
             </div>
         </div>
-        <div class="column">
-            <div class="ui fluid form segment" id="registerForm">
+        <div class="column" ng-controller="RegisterController">
+            <div class="ui fluid form segment">
                 <h3 class="ui header">注册</h3>
 
                 <div class="field">
                     <label>用户名</label>
-                    <input placeholder="用户名" type="text" id="username">
+                    <input placeholder="用户名" type="text" ng-model="username">
                 </div>
                 <div class="field">
                     <label>密码</label>
-                    <input type="password" id="password">
+                    <input type="password" ng-model="password">
                 </div>
 
-                <div class="ui blue submit button" id="register">注册</div>
+                <div class="ui blue submit button" ng-click="register()">注册</div>
             </div>
         </div>
     </div>

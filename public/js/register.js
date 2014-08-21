@@ -1,35 +1,18 @@
-$(function() {
-    var register = {
-        init: function() {
-            this.bindEvent();
+fantastic.controller('RegisterController', function($scope, $http, $log, _) {
+    $scope.logError = function(data, status) {
+        $log.log('code ' + status + ': ' + data);
+    };
 
-        },
-        bindEvent: function() {
-            var self = this;
-            $("#register").click(function() {
-                self.postData();
-            });
-        },
-        postData: function() {
-            this.data = {
-                username: $("#registerForm #username").val(),
-                password: $("#registerForm #password").val()
-            };
-            var self = this;
-            $.ajax({
-                type: "POST",
-                url: '/admin/register',
-                data: self.data, //{timestamp:timestamp},
-                success: function(xhr, result, obj) {
-                    window.location.href = "/";
-                },
-                error: function(obj, err, xhr) {
-                    alert(err);
-                }
-            });
-
-        }
+    $scope.login = function() {
+        return $http.post('/admin/register', {
+            params: {
+                username: $scope.username,
+                password: $scope.password
+            }
+        }).
+        success(function() {
+            window.location.href = "/";
+        }).
+        error($scope.logError);
     }
-
-    register.init();
-});
+})

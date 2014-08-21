@@ -10,7 +10,7 @@ type Post struct {
 	// Id      bson.ObjectId          `bson:"_id,omitempty"`
 	Title   string                 `bson:"title"`
 	Content string                 `bson:"content"`
-	Stamp   string                 `bson:"stamp"`
+	Stamp   string                 `bson:"stamp,omitempty"`
 	Meta    map[string]interface{} `bson:",omitempty"`
 }
 
@@ -32,8 +32,8 @@ func (post *Post) AddMeta(s *mgo.Session) {
 	// }
 }
 
-func SavePost(s *mgo.Session, title string, content string, stamp string) error {
-	err := getPostsCollection(s).Insert(&Post{Title: title, Content: content, Stamp: stamp})
+func (post *Post) Save(s *mgo.Session) error {
+	_, err := getPostsCollection(s).Upsert(bson.M{"stamp": post.Stamp}, post)
 	if err != nil {
 		panic(err)
 	}

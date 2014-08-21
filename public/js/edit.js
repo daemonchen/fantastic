@@ -30,7 +30,7 @@ fantastic.controller('EditorController', function($scope, $http, $log, _) {
             return $scope.clean();
         };
         for (var i = $scope.tags.length - 1; i >= 0; i--) {
-            $scope.saveTag($scope.tags[i], result.data);
+            $scope.saveTag($scope.tags[i], result.Stamp);
         };
     },
     $scope.saveTag = function(tag, stamp) {
@@ -49,11 +49,7 @@ fantastic.controller('EditorController', function($scope, $http, $log, _) {
     }
     // bind click event on submit btn
     $scope.sendPost = function() {
-        $log.info({
-            title: $scope.title,
-            content: $scope.content
-        });
-        $http.post('/edit/post', {
+        return $http.post('/edit/post', {
             title: $scope.title,
             content: $scope.content
         }).
