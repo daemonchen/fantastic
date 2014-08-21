@@ -2,29 +2,28 @@
 {{set . "controllerName" .controllerName}}
 {{append . "moreStyles" "/css/main.css"}}
 {{append . "moreScripts" "/js/main.js"}}
-{{append . "moreScripts" "/js/ckeditor.js"}}
 {{append . "moreScripts" "/js/edit.js"}}
 {{template "header.html" .}}
-<div class="main container">
-  <div class="ui form">
-      <div class="field">
-        <input id="title" type="text" placeholder="please input title"/>
-      </div>
-      <div class="field">
-        <i class="tag icon"></i>
-        <span id="tags" data="">
-
-        </span>
-        <input type="text" placeholder="碎碎念" id="tag"/>
-      </div>
-      <div class="field">
-        <textarea id="content" name="content" rows="10" cols="80">
-        </textarea>
-      </div>
-      <div class="field">
-        <div id="submit" class="ui blue button submit">提交</div>
-
-      </div>
-  </div>
+<div class="main container" ng-controller='EditorController'>
+    <div class="ui form">
+        <div class="field">
+            <input id="title" type="text" placeholder="please input title" ng-model="title" ng-change="setTitle(title)" />
+        </div>
+        <div class="field">
+            <i class="tag icon"></i>
+            <span id="tags" ng-repeat="t in tags track by $index">
+                <a href="/tag/getByTag?tag=[[t]]" target="_self">[[t]]</a>
+            </span>
+            <input type="text" placeholder="碎碎念" id="tag" ng-model="tag" ng-enter="addTag(tag)" />
+        </div>
+        <div class="field">
+            <textarea id="content" name="content" rows="10" cols="80" ng-model="content" ng-change="setContent(content)">
+            </textarea>
+        </div>
+        <div class="field">
+            <div class="ui blue button submit" ng-click="sendPost()">提交</div>
+        </div>
+        <input type="text" style="disply:none;" ng-model="stamp" />
+    </div>
 </div>
 {{template "footer.html" .}}

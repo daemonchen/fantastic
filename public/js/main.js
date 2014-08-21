@@ -9,6 +9,7 @@ var fantastic = angular.module("fantastic", ["underscore", "ngSanitize"])
         $interpolateProvider.endSymbol(']]');
     })
 
+/*----define my own service---*/
 fantastic.service('postService', function() {
     var posts = null;
     var addPosts = function(data){
@@ -24,3 +25,17 @@ fantastic.service('postService', function() {
         getPosts: getPosts
     }
 })
+/*------define my own directive------*/
+fantastic.directive('ngEnter', function() {
+        return function(scope, element, attrs) {
+            element.bind("keydown keypress", function(event) {
+                if(event.which === 13) {
+                    scope.$apply(function(){
+                        scope.$eval(attrs.ngEnter, {'event': event});
+                    });
+
+                    event.preventDefault();
+                }
+            });
+        };
+    });

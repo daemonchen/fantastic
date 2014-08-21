@@ -1,112 +1,64 @@
-$(function() {
-    var edit = {
-        init: function() {
-            this.editorContent = CKEDITOR.replace('content');
-            this.title = window.localStorage.getItem("edittingArticleTitle");
-            this.content = window.localStorage.getItem("edittingArticleContent");
-            this.tags = [];
-            this.launch();
-            this.bindEvent();
-        },
-        launch: function() {
-            if (this.title && this.title.length > 0) {
-                $("#title").val(this.title)
-            }
-            if (this.content && this.content.length > 0) {
-                this.editorContent.setData(this.content)
-            }
-        },
-        bindEvent: function() {
-            var self = this;
-            $("#title").keyup(function() {
-                window.localStorage.setItem("edittingArticleTitle", $(this).val());
-            });
-            this.editorContent.on("key", function(evt) {
-                window.localStorage.setItem("edittingArticleContent", evt.editor.getData());
-            });
-            $("#submit").click(function() {
-                self.sendPost();
-            });
-            $("#tag").keyup(function(e){
-                if (e.keyCode == 13) {
-                    self.tags.push($(this).val());
-                    self.addTag($(this).val());
-                };
-            });
-        },
-        addTag: function(tag){
-            var tagTpl = '<a href="/tag/getByTag?tag={tag}">[{tag}]</a>';
-            tagTpl = tagTpl.replace('{tag}',tag).replace('{tag}',tag);
-            console.log(tagTpl,tag);
-            $("#tags").append($(tagTpl));
-        },
-        sendPost: function() {
-            var self = this;
-            var articleTitle = this.articleTitle = $("#title").val();
-            var articleContent = this.editorContent.getData()
-            if (articleTitle.length == 0 || articleContent.length == 0) {
-                console.log("你在逗我么");
-            }
-            $.ajax({
-                url: "/edit/post",
-                type: "POST",
-                data: {
-                    title: articleTitle,
-                    content: articleContent
-                },
-                dataType: "json",
-                success: function(result) {
-                    console.log("todo: change url to detail", "result:", result);
-                    self.afterSendPost(result);
-                    // todo: change url to detail
-                },
-                error: function(xhr, ajaxOptions, thrownError) {
-                    console.log(xhr.status);
-                    console.log(thrownError);
-                }
-            });
+fantastic.controller('EditorController', function($scope, $http, $log, _) {
 
-        },
-        afterSendPost: function(data) {
-            this.saveTags(data);
-
-        },
-        saveTags: function(result){
-            if (this.tags.length == 0) { return this.clean(); };
-            for (var i = this.tags.length - 1; i >= 0; i--) {
-                this.saveTag(this.tags[i],result.data, this.articleTitle);
-            };
-            this.clean();
-        },
-        saveTag: function(tag, stamp, title){
-            $.ajax({
-                url: '/tag/save',
-                type: 'POST',
-                data: {
-                    title: title,
-                    stamp: stamp,
-                    tag: tag
-                },
-                dataType: "json",
-                success: function(result) {
-                    console.log("tag",tag,"saved");
-                    // todo: change url to detail
-                },
-                error: function(xhr, ajaxOptions, thrownError) {
-                    console.log(xhr.status);
-                    console.log(thrownError);
-                }
-            });
-        },
-        clean: function(){
-            $("#title").val("");
-            // this.tags = [];
-            this.editorContent.setData("", function() {
-                console.log("clear content after send");
-            })
-            window.localStorage.clear();
-
-        }
+    $scope.logError = function(data, status) {
+        $log.log('code ' + status + ': ' + data);
     };
-    edit.init();
-});
+    // init stuff
+    $scope.title = window.localStorage.getItem("edittingArticleTitle");
+    $scope.content = window.localStorage.getItem("edittingArticleContent");
+    $scope.tags = window.localStorage.getItem("edittingArticleTags") ? window.localStorage.getItem("edittingArticleTags").split(",") : [];
+
+    // bind change event on tag model
+    $scope.addTag = function(tag) {
+        $scope.tags.push(tag);
+        window.localStorage.setItem("edittingArticleTags", $scope.tags);
+        $scope.tag = "";
+    }
+    // bind change event on title model
+    $scope.setTitle = function(title) {
+        window.localStorage.setItem("edittingArticleTitle", title);
+    }
+
+    // bind change event on content model
+    $scope.setContent = function(content) {
+        window.localStorage.setItem("edittingArticleContent", content);
+    }
+
+    $scope.saveTags = function(result) {
+        $log.info(result);
+        if ($scope.tags.length == 0) {
+            return $scope.clean();
+        };
+        for (var i = $scope.tags.length - 1; i >= 0; i--) {
+            $scope.saveTag($scope.tags[i], result.data);
+        };
+    },
+    $scope.saveTag = function(tag, stamp) {
+        $http.post('/tag/save', {
+            title: $scope.title,
+            stamp: stamp,
+            tag: tag
+        }).
+        error($scope.logError).
+        success($scope.clean);
+
+    },
+    $scope.clean = function() {
+        window.localStorage.clear();
+
+    }
+    // bind click event on submit btn
+    $scope.sendPost = function() {
+        $log.info({
+            title: $scope.title,
+            content: $scope.content
+        });
+        $http.post('/edit/post', {
+            title: $scope.title,
+            content: $scope.content
+        }).
+        error($scope.logError).
+        success($scope.saveTags);
+    }
+
+})
