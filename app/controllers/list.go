@@ -16,7 +16,7 @@ type List struct {
 	revmgo.MongoController
 }
 
-func (c List) Index(tag string) revel.Result {
+func (c List) Index() revel.Result {
 	controllerName := "home"
-	return c.Render(controllerName, tag)
+	return c.Render(controllerName)
 }

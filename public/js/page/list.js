@@ -1,11 +1,16 @@
 fantastic.controller('ListController', function($scope, $http, $log, _){
   $scope.posts = [];
+  var urlParams = location.href.split("?")[1].split("&");
+  var urlParamsMap = {};
+  for (var i = urlParams.length - 1; i >= 0; i--) {
+      urlParamsMap[urlParams[i].split("=")[0]] = urlParams[i].split("=")[1];
+  };
+  $scope.tag = urlParamsMap["tag"];
 
   var logError = function(data, status) {
     $log.log('code '+status+': '+data);
   };
   $scope.loading = true;
-  $scope.tag = $("#hiddenTag").html();
   var init = function() {
     return $http.get('/tag/getTagsByTag',{params: {tag: $scope.tag }}).
       success(function(data) {
