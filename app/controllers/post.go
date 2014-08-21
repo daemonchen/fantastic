@@ -41,6 +41,7 @@ func (c *Post) Index() revel.Result {
 }
 func (c *Post) GetPostByStamp(stamp string) revel.Result {
 	post := models.GetPostByStamp(c.MongoSession, stamp)
+
 	return c.RenderJson(post)
 
 }

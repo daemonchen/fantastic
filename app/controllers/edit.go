@@ -6,6 +6,8 @@ import (
 	"github.com/jgraham909/revmgo"
 	"github.com/revel/revel"
 	// "labix.org/v2/mgo/bson"
+	"github.com/russross/blackfriday"
+	// "html/template"
 	"encoding/json"
 	"strconv"
 	"time"
@@ -38,4 +40,11 @@ func (c *Edit) Post(post *models.Post) revel.Result {
 		revel.INFO.Println("post to save success")
 		return c.RenderJson(&post)
 	}
+}
+
+func (c *Edit) Preview(post *models.Post) revel.Result {
+	decoder := json.NewDecoder(c.Request.Body)
+	decoder.Decode(&post)
+	post.Content = string(blackfriday.MarkdownBasic([]byte(post.Content)))
+	return c.RenderJson(&post)
 }

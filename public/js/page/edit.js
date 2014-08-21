@@ -8,35 +8,50 @@ fantastic.controller('EditorController', function($scope, $http, $log, _) {
     $scope.content = window.localStorage.getItem("edittingArticleContent");
     $scope.tags = window.localStorage.getItem("edittingArticleTags") ? window.localStorage.getItem("edittingArticleTags").split(",") : [];
 
+    // bind preview stuff
+    $scope.getPreview = function(){
+        $http.post('/edit/preview', {
+            content: $scope.content
+        }).
+        error($scope.logError).
+        success($scope.renderPreview);
+    }
+
+    $scope.renderPreview = function(result){
+        $log.info(result);
+        $scope.preview = result
+    }
     // bind change event on tag model
-    $scope.addTag = function(tag) {
-        $scope.tags.push(tag);
+    $scope.addTag = function() {
+        $scope.tags.push($scope.tag);
         window.localStorage.setItem("edittingArticleTags", $scope.tags);
         $scope.tag = "";
     }
     // bind change event on title model
-    $scope.setTitle = function(title) {
-        window.localStorage.setItem("edittingArticleTitle", title);
+    $scope.setTitle = function() {
+        window.localStorage.setItem("edittingArticleTitle", $scope.title);
     }
 
     // bind change event on content model
-    $scope.setContent = function(content) {
-        window.localStorage.setItem("edittingArticleContent", content);
+    $scope.setContent = function() {
+        window.localStorage.setItem("edittingArticleContent", $scope.content);
+        $scope.getPreview()
+
     }
 
     $scope.saveTags = function(result) {
-        $log.info(result);
+        $scope.stamp = result.Stamp
         if ($scope.tags.length == 0) {
             return $scope.clean();
         };
         for (var i = $scope.tags.length - 1; i >= 0; i--) {
-            $scope.saveTag($scope.tags[i], result.Stamp);
+            $scope.saveTag($scope.tags[i]);
         };
     },
-    $scope.saveTag = function(tag, stamp) {
+    $scope.saveTag = function(tag) {
         $http.post('/tag/save', {
             title: $scope.title,
-            stamp: stamp,
+            stamp: $scope.stamp,
             tag: tag
         }).
         error($scope.logError).
@@ -44,6 +59,7 @@ fantastic.controller('EditorController', function($scope, $http, $log, _) {
 
     },
     $scope.clean = function() {
+        window.location.href="/post/index?stamp="+$scope.stamp;
         window.localStorage.clear();
 
     }

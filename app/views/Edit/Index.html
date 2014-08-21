@@ -2,28 +2,30 @@
 {{set . "controllerName" .controllerName}}
 {{append . "moreStyles" "/css/main.css"}}
 {{append . "moreScripts" "/js/main.js"}}
-{{append . "moreScripts" "/js/edit.js"}}
+{{append . "moreScripts" "/js/page/edit.js"}}
 {{template "header.html" .}}
 <div class="main container" ng-controller='EditorController'>
     <div class="ui form">
         <div class="field">
-            <input id="title" type="text" placeholder="please input title" ng-model="title" ng-change="setTitle(title)" />
+            <input id="title" type="text" placeholder="please input title" ng-model="title" ng-change="setTitle()" />
         </div>
         <div class="field">
             <i class="tag icon"></i>
             <span id="tags" ng-repeat="t in tags track by $index">
                 <a href="/tag/getByTag?tag=[[t]]" target="_self">[[t]]</a>
             </span>
-            <input type="text" placeholder="碎碎念" id="tag" ng-model="tag" ng-enter="addTag(tag)" />
+            <input type="text" placeholder="碎碎念" id="tag" ng-model="tag" ng-enter="addTag()" />
         </div>
         <div class="field">
-            <textarea id="content" name="content" rows="10" cols="80" ng-model="content" ng-change="setContent(content)">
+            <textarea id="content" name="content" rows="10" cols="80" ng-model="content" ng-change="setContent()">
             </textarea>
         </div>
         <div class="field">
             <div class="ui blue button submit" ng-click="sendPost()">提交</div>
         </div>
-        <input type="text" style="disply:none;" ng-model="stamp" />
+        <h2>预览:</h2>
+        <div ng-bind-html="preview.Content" >
+        </div>
     </div>
 </div>
 {{template "footer.html" .}}

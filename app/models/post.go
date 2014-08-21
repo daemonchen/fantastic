@@ -2,6 +2,7 @@ package models
 
 import (
 	// "encoding/json"
+	"github.com/russross/blackfriday"
 	"labix.org/v2/mgo"
 	"labix.org/v2/mgo/bson"
 )
@@ -53,6 +54,7 @@ func GetAllPosts(s *mgo.Session) (posts []*Post) {
 
 func GetPostByStamp(s *mgo.Session, stamp string) (p *Post) {
 	getPostsCollection(s).Find(bson.M{"stamp": stamp}).One(&p)
+	p.Content = string(blackfriday.MarkdownBasic([]byte(p.Content)))
 	return
 }
 
