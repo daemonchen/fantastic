@@ -17,7 +17,7 @@ PUT  /task                                      Task.UpdateTask
 GET     /favicon.ico                            404
 
 # post aip
-POST /post/comment                              Post.AddComment
+POST /comment/save                              Comment.AddComment
 DELETE /post/index                       Post.Delete
 
 # Map static resources from the /app/public folder to the /public path

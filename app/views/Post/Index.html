@@ -16,13 +16,13 @@
                 <h4 class="ui">[[time]]</h4>
                 {{if eq .isLogin "true"}}
                 <i class="edit icon" id="editor"></i>
-                <i class="save icon" id="save"></i>
                 <i class="delete icon" id="delete"></i>
 
                 {{end}}
                 <!-- content -->
                 <div ng-bind-html="post.Content"></div>
                 <!-- comments -->
+                {{template "common/comments.html" .}}
             </div>
         </div>
         {{template "sidebar.html" .}}

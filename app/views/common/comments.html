@@ -1,42 +1,40 @@
 <h1 class="ui dividing">Comments</h1>
 <div class="ui comments">
-    {{range .comments}}
-    <div class="comment">
+    <div class="comment" ng-repeat="comment in comments">
         <a class="avatar">
-            <img data="{{.UserEmail}}">
+            <img data="[[comment.UserEmail]]">
         </a>
         <div class="content">
-            <a class="author">{{.UserName}}</a>
+            <a class="author">[[comment.UserName]]</a>
             <div class="metadata">
-                <div class="date">{{.CommentTime}}</div>
+                <div class="date">[[comment.Date]]</div>
             </div>
             <div class="text">
-                {{raw .CommentText}}
+                [[comment.CommentText]]
             </div>
             <div class="actions">
                 <a class="reply">Reply</a>
                 <!-- <a class="delete">Delete</a> -->
             </div>
         </div>
+        <div class="ui divider"></div>
     </div>
-    <div class="ui divider"></div>
-    {{end}}
 </div>
 <form class="ui reply form">
     <div class="field">
-        <textarea id="comment"></textarea>
+        <textarea ng-model="newComment"></textarea>
     </div>
     <div class="two fields">
         <div class="field">
             <label>Nick Name</label>
-            <input placeholder="please input your nickname" type="text" id="username">
+            <input placeholder="please input your nickname" type="text" ng-model="username">
         </div>
         <div class="field">
             <label>Email</label>
-            <input placeholder="please input your email" type="text" id="email">
+            <input placeholder="please input your email" type="text" ng-model="email">
         </div>
     </div>
-    <div class="ui fluid blue labeled submit icon button">
+    <div class="ui fluid blue labeled submit icon button" ng-click="sendComment()">
         <i class="icon edit"></i> Add Reply
     </div>
 </form>
