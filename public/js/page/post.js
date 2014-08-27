@@ -9,13 +9,20 @@ fantastic.controller('PostController', function($scope, $http, $log, _) {
     $scope.loading = true;
     $scope.comments = [];
 
-
-
-    $scope.addComment = function(){
-        $scope.commentData.Date = moment(parseInt($scope.commentData.CommentTime)).fromNow();
-        $scope.comments.unshift($scope.commentData);
-        $scope.clear();
+    $scope.getPreview = function(){
+        $http.post('/comment/preview', {
+            CommentText: $scope.newComment
+        }).
+        error($scope.logError).
+        success($scope.renderPreview);
     }
+
+    $scope.renderPreview = function(result){
+        $log.info(result);
+        $scope.preview = result
+    }
+
+
 
     $scope.clear = function(){
         $scope.newComment = "";
@@ -31,7 +38,7 @@ fantastic.controller('PostController', function($scope, $http, $log, _) {
         if (!$scope.newComment) {return console.log("$scope.newComment is :",$scope.newComment);};
         $http.post('/comment/save', $scope.commentData).
         error($scope.logError).
-        success($scope.addComment);
+        success(pageUtil.getComments);
     }
 
     $scope.logError = function(data, status) {
@@ -69,11 +76,15 @@ fantastic.controller('PostController', function($scope, $http, $log, _) {
                 }
             }).
             success(function(data) {
-                _.each(data, function(v,k){
-                    v.Date = moment(parseInt(v.CommentTime)).fromNow();
-                });
-                $scope.comments = data
-                $log.log(data);
+                if (!!data && data.length != 0 && data != "null") {
+                    _.each(data, function(v,k){
+                        v.Date = moment(parseInt(v.CommentTime)).fromNow();
+                    });
+                    $scope.comments = data || []
+                    $scope.clear();
+
+                };
+                $log.log("data",data);
             }).
             error($scope.logError);
         }

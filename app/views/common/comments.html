@@ -9,8 +9,7 @@
             <div class="metadata">
                 <div class="date">[[comment.Date]]</div>
             </div>
-            <div class="text">
-                [[comment.CommentText]]
+            <div class="text" ng-bind-html="comment.CommentText">
             </div>
             <div class="actions">
                 <a class="reply">Reply</a>
@@ -22,7 +21,10 @@
 </div>
 <form class="ui reply form">
     <div class="field">
-        <textarea ng-model="newComment"></textarea>
+        <textarea ng-model="newComment" ng-change="getPreview()"></textarea>
+    </div>
+    <h2 ng-show="!!preview.CommentText">预览:</h2>
+    <div ng-bind-html="preview.CommentText" >
     </div>
     <div class="two fields">
         <div class="field">
