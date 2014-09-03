@@ -1,3 +1,8 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
 body {
     margin: 0;
     padding: 0;
@@ -266,6 +271,14 @@ a.count_livid,a.count_livid:hover,a.count_livid:link{
     margin-right: 5px;
     font-size: 12px;
 }
+.author{
+    cursor: pointer;
+}
+
+.time{
+    color: #636363;
+}
+
 .tags-cloud{
     float: left;
     padding: 10px;
@@ -278,4 +291,20 @@ a.count_livid,a.count_livid:hover,a.count_livid:link{
     height: 48px;
     border-radius: 90px;
     border: 1px solid #e1e1e1;
+}
+.comments-latest{
+    background-color: #f3f3f3;
+    padding: 10px;
+    margin: 15px auto;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px #e6e6e6;
+}
+/*.comments-latest .text{
+    padding-bottom: 10px;
+}*/
+.comments-latest .time{
+    padding-left: 10px;
+}
+.comments-latest  .ui.divider{
+    margin: 5px auto;
 }

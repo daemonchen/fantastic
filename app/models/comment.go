@@ -42,6 +42,17 @@ func (comment *Comment) Transform() {
     comment.CommentText = string(blackfriday.MarkdownBasic([]byte(comment.CommentText)))
 }
 
+func GetComments(s *mgo.Session, limit int) (comments []*Comment) {
+    err := getCommentCollection(s).Find(nil).Limit(limit).Sort("-commentTime").All(&comments)
+    if err != nil {
+        return
+    }
+    for _, comment := range comments {
+        comment.Transform()
+    }
+    return
+}
+
 func GetCommentsByStamp(s *mgo.Session, stamp string) (comments []*Comment) {
     err := getCommentCollection(s).Find(bson.M{"relativeStamp": stamp}).Sort("-commentTime").All(&comments)
     if err != nil {

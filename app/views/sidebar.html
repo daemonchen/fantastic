@@ -5,10 +5,14 @@
         <h2>comments</h2>
         <div class="ui divider">
         </div>
-        <div ng-repeat='comment in comments' class="tags-cloud">
-            <a href="/list/index?tag=[[tag.tag]]">[[tag.tag]]
-                <span>([[tag.count]])</span>
-            </a>
+        <div ng-repeat='comment in comments' class="comments-latest">
+            <div class="text" ng-bind-html="comment.CommentText">
+            </div>
+            <div class="ui divider">
+            </div>
+            <a class="author">[[comment.UserName]]</a>
+            <span class="time">[[comment.Date]]</span>
+
         </div>
         {{template "common/spinner.html" .}}
     </div>

@@ -9,7 +9,7 @@ fantastic.controller('PostController', function($scope, $http, $log, _) {
     $scope.loading = true;
     $scope.comments = [];
 
-    $scope.getPreview = function(){
+    $scope.getPreview = function() {
         $http.post('/comment/preview', {
             CommentText: $scope.newComment
         }).
@@ -17,25 +17,27 @@ fantastic.controller('PostController', function($scope, $http, $log, _) {
         success($scope.renderPreview);
     }
 
-    $scope.renderPreview = function(result){
+    $scope.renderPreview = function(result) {
         $log.info(result);
         $scope.preview = result
     }
 
 
 
-    $scope.clear = function(){
+    $scope.clear = function() {
         $scope.newComment = "";
     }
 
     $scope.sendComment = function() {
         $scope.commentData = {
-          RelativeStamp: $scope.stamp,
-          UserName: $scope.username || "游客",
-          UserEmail: $scope.email,
-          CommentText: $scope.newComment
+            RelativeStamp: $scope.stamp,
+            UserName: $scope.username || "游客",
+            UserEmail: $scope.email,
+            CommentText: $scope.newComment
         }
-        if (!$scope.newComment) {return console.log("$scope.newComment is :",$scope.newComment);};
+        if (!$scope.newComment) {
+            return console.log("$scope.newComment is :", $scope.newComment);
+        };
         $http.post('/comment/save', $scope.commentData).
         error($scope.logError).
         success(pageUtil.getComments);
@@ -47,10 +49,10 @@ fantastic.controller('PostController', function($scope, $http, $log, _) {
 
     var pageUtil = {
         init: function() {
-        // $log.info($scope.islogin);
+            // $log.info($scope.islogin);
             this.getPost();
         },
-        getPost: function(){
+        getPost: function() {
             var self = this;
             $http.get('/post/getPostByStamp', {
                 params: {
@@ -69,24 +71,24 @@ fantastic.controller('PostController', function($scope, $http, $log, _) {
             error($scope.logError);
 
         },
-        getComments: function(){
+        getComments: function() {
+            var self = this;
             $http.get('/comment/getCommentsByStamp', {
                 params: {
                     stamp: $scope.stamp
                 }
             }).
             success(function(data) {
-                if (!!data && data.length != 0 && data != "null") {
-                    _.each(data, function(v,k){
-                        v.Date = moment(parseInt(v.CommentTime)).fromNow();
-                    });
-                    $scope.comments = data || []
-                    $scope.clear();
-
-                };
-                $log.log("data",data);
+                (!!data) && (data.length != 0) && (data != "null") && self.renderComments(data);
             }).
             error($scope.logError);
+        },
+        renderComments: function(data) {
+            _.each(data, function(v, k) {
+                v.Date = moment(parseInt(v.CommentTime)).fromNow();
+            });
+            $scope.comments = data || []
+            $scope.clear();
         }
 
     }

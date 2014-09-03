@@ -1,7 +1,42 @@
 fantastic.controller('ArchiveSidebarController', function($scope, $http, $log, _, postService) {
 
     $scope.loading = true;
-    $log.info(postService.getPosts());
+    $scope.logError = function(data, status) {
+        $log.log('code ' + status + ': ' + data);
+    };
+    $scope.loading = true;
+
+    var commentUtil = {
+        init: function() {
+            this.getLatestComments();
+        },
+        getLatestComments: function() {
+            var self = this;
+            $http.get('/comment/getComments', {
+                params: {
+                    limit: 10
+                }
+            }).
+            success(function(data) {
+                console.log(data);
+                (!!data) && (data.length != 0) && (data != "null") && self.renderComments(data);
+            }).
+            error($scope.logError);
+
+        },
+        renderComments: function(data) {
+            _.each(data, function(v, k) {
+                v.Date = moment(parseInt(v.CommentTime)).fromNow();
+            });
+            $scope.comments = data || []
+            $scope.loading = false;
+
+
+        }
+    }
+
+
+    commentUtil.init();
 
 })
 

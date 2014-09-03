@@ -37,10 +37,16 @@ func (c *Comment) AddComment(comment *models.Comment) revel.Result {
 
 }
 
+func (c *Comment) GetComments(limit int) revel.Result {
+    comments := models.GetComments(c.MongoSession, limit)
+    return c.RenderJson(comments)
+}
+
 func (c *Comment) GetCommentsByStamp(stamp string) revel.Result {
     comments := models.GetCommentsByStamp(c.MongoSession, stamp)
     return c.RenderJson(comments)
 }
+
 func (c *Comment) Preview(comment *models.Comment) revel.Result {
     decoder := json.NewDecoder(c.Request.Body)
     decoder.Decode(&comment)
