@@ -23,7 +23,7 @@
         {{end}}
         <link rel="alternate" type="application/rss+xml" title="Daemon Chen" href="/rss/">
         <link rel="canonical" href="http://www.classical1988.com/">
-        <base target="_blank" />
+        <base target="_blank">
         <script>
         var _hmt = _hmt || [];
         (function() {
@@ -38,10 +38,10 @@
     <body ng-app="fantastic">
         <div class="ui inverted menu fixed">
             <div class="container">
-                <a class="{{if eq .controllerName "home"}}active{{end}} item" href="/">
+                <a class="{{if eq .controllerName "home"}}active{{end}} item" href="/" target="_self">
                     <i class="home icon"></i> Home
                 </a>
-                <a class="{{if eq .controllerName "about"}}active{{end}} item">
+                <a class="{{if eq .controllerName "about"}}active{{end}} item" target="_self">
                     <i class="info icon"></i> About me
                 </a>
                 <a class="item" href="https://github.com/daemonchen/fantastic">

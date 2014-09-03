@@ -2,8 +2,13 @@
 <div class="five wide column">
     <div class="ui segment" ng-controller="ArchiveSidebarController">
         <span></span>
-        <h2>archive</h2>
+        <h2>comments</h2>
         <div class="ui divider">
+        </div>
+        <div ng-repeat='comment in comments' class="tags-cloud">
+            <a href="/list/index?tag=[[tag.tag]]">[[tag.tag]]
+                <span>([[tag.count]])</span>
+            </a>
         </div>
         {{template "common/spinner.html" .}}
     </div>
