@@ -40,7 +40,9 @@ fantastic.controller('PostController', function($scope, $http, $log, _) {
         };
         $http.post('/comment/save', $scope.commentData).
         error($scope.logError).
-        success(pageUtil.getComments);
+        success(function(){
+            pageUtil.getComments()
+        });
     }
 
     $scope.logError = function(data, status) {

@@ -299,9 +299,15 @@ a.count_livid,a.count_livid:hover,a.count_livid:link{
     border-radius: 5px;
     box-shadow: 1px 1px 1px #e6e6e6;
 }
-/*.comments-latest .text{
-    padding-bottom: 10px;
-}*/
+.comments-latest .text, .comments-latest .text p,
+.comments-latest .text h1,
+.comments-latest .text h2,
+.comments-latest .text div{
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 .comments-latest .time{
     padding-left: 10px;
 }
