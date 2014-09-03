@@ -9,6 +9,8 @@ import (
     "labix.org/v2/mgo/bson"
 )
 
+const trimLength = 25
+
 type Comment struct {
     Id            bson.ObjectId `bson:"_id,omitempty"`
     RelativeStamp string        `bson:"relativeStamp"`
@@ -16,6 +18,7 @@ type Comment struct {
     UserEmail     string        `bson:"userEmail"`
     CommentText   string        `bson:"commentText"`
     CommentTime   string        `bson:"commentTime,omitempty"`
+    Tease         string        `bson:"tease,omitempty"`
 }
 
 func getCommentCollection(s *mgo.Session) *mgo.Collection {
@@ -38,6 +41,11 @@ func (comment *Comment) Save(s *mgo.Session) error {
 }
 
 func (comment *Comment) Transform() {
+    if len(comment.CommentText) > trimLength {
+        comment.Tease = string(blackfriday.MarkdownBasic([]byte(comment.CommentText[0:trimLength])))
+    } else {
+        comment.Tease = string(blackfriday.MarkdownBasic([]byte(comment.CommentText[0:len(comment.CommentText)])))
+    }
 
     comment.CommentText = string(blackfriday.MarkdownBasic([]byte(comment.CommentText)))
 }

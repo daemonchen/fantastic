@@ -6,12 +6,12 @@
         <div class="ui divider">
         </div>
         <div ng-repeat='comment in comments' class="comments-latest">
-            <div class="text" ng-bind-html="comment.CommentText">
+            <div class="text" ng-bind-html="comment.Tease">
             </div>
             <div class="ui divider">
             </div>
             <a class="author">[[comment.UserName]]</a>
-            <span class="time">[[comment.Date]]</span>
+            <a class="time" href="/post/index?stamp=[[comment.RelativeStamp]]">[[comment.Date]]</a>
 
         </div>
         {{template "common/spinner.html" .}}

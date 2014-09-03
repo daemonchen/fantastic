@@ -18,7 +18,6 @@ fantastic.controller('PostController', function($scope, $http, $log, _) {
     }
 
     $scope.renderPreview = function(result) {
-        $log.info(result);
         $scope.preview = result
     }
 
@@ -88,6 +87,7 @@ fantastic.controller('PostController', function($scope, $http, $log, _) {
         renderComments: function(data) {
             _.each(data, function(v, k) {
                 v.Date = moment(parseInt(v.CommentTime)).fromNow();
+                v.Avatar = MD5(v.UserEmail)
             });
             $scope.comments = data || []
             $scope.clear();

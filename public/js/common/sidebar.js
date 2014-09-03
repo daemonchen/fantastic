@@ -14,7 +14,7 @@ fantastic.controller('ArchiveSidebarController', function($scope, $http, $log, _
             var self = this;
             $http.get('/comment/getComments', {
                 params: {
-                    limit: 10
+                    limit: 3
                 }
             }).
             success(function(data) {
