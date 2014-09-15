@@ -14,7 +14,7 @@ fantastic.controller('ListController', function($scope, $http, $log, _){
   var init = function() {
     return $http.get('/tag/getTagsByTag',{params: {tag: $scope.tag }}).
       success(function(data) {
-        $log.info()
+        $log.info("data:",data)
         if (!!data && data.length != 0 && data != "null") {
             _.each(data, function(v,k){
                 v.Date = moment(parseInt(v.Stamp)).fromNow();
