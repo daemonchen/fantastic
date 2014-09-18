@@ -88,15 +88,48 @@ div.ellipsis {
 }
 
 .go-top {
-    padding: 14px 11px;
+    padding: 10px;
     position: fixed;
-    background: #ccc;
+    background: #e8e8e8;
     right: 60px;
+    border-radius: 90px;
     bottom: 60px;
+
+    -moz-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+
+    animation:goTop 3s infinite;
+    -webkit-animation:goTop 3s infinite;
 }
 
+@-webkit-keyframes goTop {
+    0%, 80%, 100% {
+        -webkit-transform: scale(1);
+    }
+    40% {
+        -webkit-transform: scale(0.5);
+    }
+}
+
+
+@keyframes goTop {
+    0%, 80%, 100% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+    }
+    40% {
+        transform: scale(0.5);
+        -webkit-transform: scale(0.5);
+    }
+}
+.go-top:hover{
+    background-color: #fff;
+}
 .go-top i.icon {
     margin: 0;
+    font-size: 16px;
 }
 .spinner {
     margin: auto;
@@ -245,6 +278,13 @@ h2,h4{
     padding: 0;
     margin: 0;
 }
+h2.item_title{
+    font-size: 16px;
+    line-height: 130%;
+    text-shadow: 0px 1px 0px #fff;
+    word-wrap: break-word;
+    hyphens: auto;
+}
 .ui.grid > .column{
     margin-top: 10px;
     margin-bottom: 10px;
@@ -281,23 +321,60 @@ a.count_livid,a.count_livid:hover,a.count_livid:link{
 
 .tags-cloud{
     float: left;
-    padding: 10px;
+}
+.tags-cloud a{
+    line-height: 1.231;
+    display: block;
+    padding: 5px 10px;
+    margin-right: 5px;
+    margin-top: 5px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 2px #bbb;
+    background-color: #f3f3f3;
+    -moz-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+}
+.tags-cloud a:hover{
+    box-shadow: 1px 1px 2px #999;
+    background-color: #ddd;
 }
 #hiddenTag{
     display: none;
 }
-.ui.comments .avatar img{
+.avatar img, .ui.comments .avatar img{
     width: 48px;
     height: 48px;
     border-radius: 90px;
     border: 1px solid #e1e1e1;
+    -moz-transition: all 1s;
+    -webkit-transition: all 1s;
+    -o-transition: all 1s;
+    transition: all 1s;
+}
+.avatar img:hover, .avatar img.hover, .ui.comments .avatar img:hover, .ui.comments .avatar img.hover{
+    -moz-transform: rotate(720deg);
+    -webkit-transform: rotate(720deg);
+    -o-transform: rotate(720deg);
+    transform: rotate(720deg);
 }
 .comments-latest{
     background-color: #f3f3f3;
     padding: 10px;
     margin: 15px auto;
     border-radius: 5px;
-    box-shadow: 1px 1px 1px #e6e6e6;
+    box-shadow: 1px 1px 1px #aaa;
+
+    -moz-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+}
+.comments-latest:hover{
+    background-color: #ddd;
+    box-shadow: 1px 1px 2px #bbb;
+    /*color: #fff;*/
 }
 /*.comments-latest .text{
     max-height: 14px;
@@ -311,3 +388,39 @@ a.count_livid,a.count_livid:hover,a.count_livid:link{
 .comments-latest  .ui.divider{
     margin: 5px auto;
 }
+.ui.segment h1{
+    padding: 10px 0;
+}
+.ui.segment pre{
+    background-color: #f3f3f3;
+    padding: 5px;
+    line-height: 1.231;
+}
+.ui.segment blockquote{
+    padding: 10px 0;
+}
+.ui.segment ul{
+    list-style: none;
+}
+.ui.segment ul li{
+    line-height: 1.231;
+}
+.ui.segment h2{
+    padding: 10px 0;
+}
+#links p{
+    line-height: 1.5;
+}
+#links p a{
+    -moz-transition: all 0.2s ease-in 0s;
+    -webkit-transition: all 0.2s ease-in 0s;
+    -o-transition: all 0.2s ease-in 0s;
+    transition: all 0.2s ease-in 0s;
+}
+#links p a:hover{
+    padding-left: 10px;
+    -moz-transition: all 0.2s ease-in 0s;
+    -webkit-transition: all 0.2s ease-in 0s;
+    -o-transition: all 0.2s ease-in 0s;
+    transition: all 0.2s ease-in 0s;
+};
