@@ -5,14 +5,14 @@
     <a href="#" class="go-top" style="display: block;" target="_self">
        <i class="up large icon"></i>
     </a>
-    <script src="/public/js/angular.min.js"></script>
-    <script src="/public/js/lib/angular-sanitize.js"></script>
-    <script src="/public/js/lib/underscore.js"></script>
-    <script src="/public/js/lib/moment.js"></script>
+    <script src="http://cdn.staticfile.org/angular.js/1.3.0-beta.13/angular.min.js"></script>
+    <script src="http://cdn.staticfile.org/angular.js/1.3.0-beta.13/angular-sanitize.min.js"></script>
+    <script src="http://cdn.staticfile.org/underscore.js/1.6.0/underscore-min.js"></script>
+    <script src="http://cdn.staticfile.org/moment.js/2.7.0/moment.min.js"></script>
     <script src="/public/js/main.js"></script>
 
     {{range .moreScripts}}
-      <script src="/public/{{.}}" type="text/javascript" charset="utf-8"></script>
+      <script src="{{.}}" type="text/javascript" charset="utf-8"></script>
     {{end}}
   </body>
 </html>

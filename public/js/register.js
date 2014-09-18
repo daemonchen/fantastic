@@ -3,7 +3,7 @@ fantastic.controller('RegisterController', function($scope, $http, $log, _) {
         $log.log('code ' + status + ': ' + data);
     };
 
-    $scope.login = function() {
+    $scope.register = function() {
         return $http.post('/admin/register', {
             params: {
                 username: $scope.username,

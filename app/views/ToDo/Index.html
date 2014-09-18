@@ -2,9 +2,9 @@
 {{set . "controllerName" .controllerName}}
 {{append . "moreStyles" "/css/main.css"}}
 {{append . "moreStyles" "/css/todo.css"}}
-{{append . "moreScripts" "/js/angular.min.js"}}
-{{append . "moreScripts" "/js/main.js"}}
-{{append . "moreScripts" "/js/todo.js"}}
+{{append . "moreScripts" "/public/js/angular.min.js"}}
+{{append . "moreScripts" "/public/js/main.js"}}
+{{append . "moreScripts" "/public/js/todo.js"}}
 {{template "header.html" .}}
 <div class='main container' ng-app="fantastic">
     <div  ng-controller='TaskCtrl'>
