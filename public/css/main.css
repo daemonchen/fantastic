@@ -7,8 +7,9 @@ body {
     margin: 0;
     padding: 0;
     background: #f3f3f3;
-    line-height: 1.231;
+    line-height: 1.5;
     font-size: 12px;
+    font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti !important;
 }
 
 a {
@@ -323,7 +324,7 @@ a.count_livid,a.count_livid:hover,a.count_livid:link{
     float: left;
 }
 .tags-cloud a{
-    line-height: 1.231;
+    line-height: 1.5;
     display: block;
     padding: 5px 10px;
     margin-right: 5px;
@@ -388,13 +389,19 @@ a.count_livid,a.count_livid:hover,a.count_livid:link{
 .comments-latest  .ui.divider{
     margin: 5px auto;
 }
+.ui.segment p{
+    line-height: 1.5;
+    text-indent: 2em;
+    padding: 5px 0;
+    font-size: 14px;
+}
 .ui.segment h1{
     padding: 10px 0;
 }
 .ui.segment pre{
     background-color: #f3f3f3;
     padding: 5px;
-    line-height: 1.231;
+    line-height: 1.5;
 }
 .ui.segment blockquote{
     padding: 10px 0;
@@ -403,7 +410,7 @@ a.count_livid,a.count_livid:hover,a.count_livid:link{
     list-style: none;
 }
 .ui.segment ul li{
-    line-height: 1.231;
+    line-height: 1.5;
 }
 .ui.segment h2{
     padding: 10px 0;
