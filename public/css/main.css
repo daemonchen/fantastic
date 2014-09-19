@@ -7,8 +7,10 @@ body {
     margin: 0;
     padding: 0;
     background: #f3f3f3;
+    color: #2f2f2f;
     line-height: 1.5;
     font-size: 12px;
+    font-weight: 100;
     font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti !important;
 }
 
@@ -389,31 +391,35 @@ a.count_livid,a.count_livid:hover,a.count_livid:link{
 .comments-latest  .ui.divider{
     margin: 5px auto;
 }
-.ui.segment p{
+p, .ui.segment p{
     line-height: 1.5;
     text-indent: 2em;
-    padding: 5px 0;
-    font-size: 14px;
+    margin-bottom: 25px;
+    font-size: 17px;
 }
-.ui.segment h1{
+h1, .ui.segment h1{
     padding: 5px 0;
 }
-.ui.segment pre{
+pre, .ui.segment pre{
     background-color: #f3f3f3;
     padding: 5px;
     line-height: 1.5;
 }
-.ui.segment blockquote{
+code, .ui.segment code{
+    font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+    color: #c7254e;
+}
+blockquote, .ui.segment blockquote{
     padding: 10px 0;
 }
-.ui.segment ul{
+ul, .ui.segment ul{
     margin-left: 4em;
     padding: 5px 0;
 }
-.ui.segment ul li{
+ul li, .ui.segment ul li{
     line-height: 1.5;
 }
-.ui.segment h1,.ui.segment h2, .ui.segment h3, .ui.segment h4{
+h1, h2, h3, h4, .ui.segment h1,.ui.segment h2, .ui.segment h3, .ui.segment h4{
     padding: 5px 0;
 }
 #links p{
