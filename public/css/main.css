@@ -404,6 +404,7 @@ pre, .ui.segment pre{
     background-color: #f3f3f3;
     padding: 5px;
     line-height: 1.5;
+    margin: 0 2em;
 }
 code, .ui.segment code{
     font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
@@ -437,4 +438,8 @@ h1, h2, h3, h4, .ui.segment h1,.ui.segment h2, .ui.segment h3, .ui.segment h4{
     -webkit-transition: all 0.2s ease-in 0s;
     -o-transition: all 0.2s ease-in 0s;
     transition: all 0.2s ease-in 0s;
-};
+}
+.ui.segment .comments-latest p{
+    text-indent: 0;
+    margin: 0;
+}
