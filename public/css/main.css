@@ -27,9 +27,17 @@ a:link {
 a:hover {
     color: #76cc1e;
 }
-
-.container {
-    margin: 0px 125px 0px 125px;
+@media only screen and (min-width: 1440px){
+    .container {
+        margin: 0 auto;
+        width: 1200px;
+    }
+}
+@media only screen and (max-width: 1439px){
+    .container {
+        margin: 0 auto;
+        width: 990px;
+    }
 }
 
 .main {
