@@ -3,10 +3,10 @@ package controllers
 import (
     // "encoding/json"
     "fantastic/app/models"
-    "github.com/jgraham909/revmgo"
+    "github.com/daemonchen/revmgo"
     "github.com/revel/revel"
     // "github.com/revel/revel/cache"
-    // "labix.org/v2/mgo/bson"
+    // "gopkg.in/mgo.v2/bson"
     "encoding/json"
     "github.com/russross/blackfriday"
     // "html/template"

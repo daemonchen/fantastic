@@ -6,7 +6,7 @@ import (
     // "bytes"
     // "fmt"
     // . "github.com/jbrukh/bayesian"
-    "github.com/jgraham909/revmgo"
+    "github.com/daemonchen/revmgo"
     "github.com/revel/revel"
     // "io/ioutil"
     // "os"
