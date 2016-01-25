@@ -6,7 +6,7 @@ import (
     "github.com/daemonchen/revmgo"
     "github.com/revel/revel"
     // "github.com/revel/revel/cache"
-    // "gopkg.in/mgo.v2/bson"
+    // "labix.org/v2/mgo/bson"
     "encoding/json"
     "github.com/russross/blackfriday"
     // "html/template"

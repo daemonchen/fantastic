@@ -2,8 +2,8 @@ package models
 
 import (
 	// "encoding/json"
-	"gopkg.in/mgo.v2"
-	"gopkg.in/mgo.v2/bson"
+	"labix.org/v2/mgo"
+	"labix.org/v2/mgo/bson"
 )
 
 type Tag struct {

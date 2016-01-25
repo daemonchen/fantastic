@@ -5,7 +5,7 @@ import (
 	"fantastic/app/models"
 	"github.com/daemonchen/revmgo"
 	"github.com/revel/revel"
-	"gopkg.in/mgo.v2/bson"
+	"labix.org/v2/mgo/bson"
 
 	// "strconv"
 )

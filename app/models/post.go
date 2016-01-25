@@ -3,8 +3,8 @@ package models
 import (
     // "encoding/json"
     "github.com/russross/blackfriday"
-    "gopkg.in/mgo.v2"
-    "gopkg.in/mgo.v2/bson"
+    "labix.org/v2/mgo"
+    "labix.org/v2/mgo/bson"
 )
 
 type Post struct {

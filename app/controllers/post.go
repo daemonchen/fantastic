@@ -8,7 +8,7 @@ import (
     "github.com/revel/revel"
     // "github.com/revel/revel/cache"
     "io"
-    // "gopkg.in/mgo.v2/bson"
+    // "labix.org/v2/mgo/bson"
     // "fmt"
     "math/rand"
     "strconv"
