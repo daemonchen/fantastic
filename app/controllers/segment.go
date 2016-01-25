@@ -2,7 +2,7 @@ package controllers
 
 import (
 	// "fmt"
-	"github.com/daemonchen/revmgo"
+	"github.com/janekolszak/revmgo"
 	"github.com/revel/revel"
 )
 

@@ -4,7 +4,7 @@ import (
     "encoding/json"
     // "crypto/md5"
     "fantastic/app/models"
-    "github.com/daemonchen/revmgo"
+    "github.com/janekolszak/revmgo"
     "github.com/revel/revel"
     // "github.com/revel/revel/cache"
     // "io"

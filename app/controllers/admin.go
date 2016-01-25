@@ -5,7 +5,7 @@ import (
     // "fmt"
     "crypto/md5"
     "fmt"
-    "github.com/daemonchen/revmgo"
+    "github.com/janekolszak/revmgo"
     "github.com/revel/revel"
     "labix.org/v2/mgo/bson"
 )

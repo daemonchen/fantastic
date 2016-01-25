@@ -3,7 +3,7 @@ package controllers
 import (
 	// "flag"
 	// "github.com/huichen/sego"
-	"github.com/daemonchen/revmgo"
+	"github.com/janekolszak/revmgo"
 	// "os"
 	// "path/filepath"
 	"runtime"

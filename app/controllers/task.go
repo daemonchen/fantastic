@@ -3,7 +3,7 @@ package controllers
 import (
 	"encoding/json"
 	"fantastic/app/models"
-	"github.com/daemonchen/revmgo"
+	"github.com/janekolszak/revmgo"
 	"github.com/revel/revel"
 	"labix.org/v2/mgo/bson"
 
